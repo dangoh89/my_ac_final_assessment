@@ -12,4 +12,12 @@
 <% @user.notes.each do |note| %>
     <p>Title: <%= note.title %></p>
     <p>Note: <%= note.body %></p>
+    <% if Like.exists?(user_id: current_user.id) %>
+      <% if Like.exists?(note_id: note.id) %>
+        <% like_id = Like.where(["user_id = ? and note_id = ?", current_user.id, note.id]) %>
+        <%= link_to 'Unlike', note_like_path(note.id, like_id), method: :delete %>
+      <% end %>
+    <% else %>
+      <%= link_to 'Like', note_likes_path(note.id), method: :post %>
+    <% end %>
 <% end %>
