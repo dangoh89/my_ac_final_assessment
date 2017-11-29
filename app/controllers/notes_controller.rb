@@ -37,9 +37,19 @@ class NotesController < ApplicationController
     @notes = Note.all
   end
 
+  def like
+    @note = current_user.notes.find(params[:id])
+    @note.like = true;
+  end
+
+  def unlike
+    @note = current_user.notes.find(params[:id])
+    @note.like = false;
+  end
+
   private
 
   def note_params
-    params.require(:note).permit(:title, :body)
+    params.require(:note).permit(:title, :body, :like)
   end
 end
