@@ -11,6 +11,7 @@ class LikesController < ApplicationController
     likes = {user_id: @user,note_id: @note }
     @like = Like.new(likes)
     @like.save!
+    UserMailer.like_email(note.user).deliver_now
     redirect_to user_path(note.user_id)
   end
 
@@ -21,6 +22,8 @@ class LikesController < ApplicationController
     record = Like.where("user_id = ? and note_id = ?", @user, @note)
     recordss = record.ids.first
     Like.destroy(recordss)
+
+    UserMailer.unlike_email(note.user).deliver_now
     redirect_to user_path(note.user_id)
   end
 
