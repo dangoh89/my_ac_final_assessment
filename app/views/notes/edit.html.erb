@@ -1,0 +1,30 @@
+<h1>Edit your note</h1>
+<% if @note.errors.any? %>
+
+<h2>The following errors prevented the article from getting created</h2>
+
+<ul>
+
+<% @note.errors.full_messages.each do |msg| %>
+
+<li><%= msg %></li>
+
+<% end %>
+
+</ul>
+
+<% end %>
+
+
+<%= form_for @note, method: :PUT do |f| %>
+  <p>
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :body, 'Write Something' %><br/>
+    <%= f.text_field :body %>
+  </p>
+
+  <%= f.submit 'Edit Note' %>
+<% end %>
