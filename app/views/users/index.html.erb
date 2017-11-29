@@ -1,0 +1,9 @@
+<h1>My Non Followers</h1>
+
+<% @users.each do |user| %>
+  <% if current_user.not_followers_with?(user.id) %>
+    <% if current_user.id != user.id %>
+      <p><%= user.id %></p>
+    <% end %>
+  <% end %>
+<% end %>

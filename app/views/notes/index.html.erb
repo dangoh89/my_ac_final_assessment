@@ -1,12 +1,7 @@
 <h1>Listing all notes</h1>
 <% @notes.each do |note| %>
+<p><%= note.user_id %></p>
 <p><%= note.title %></p>
 <p><%= note.body %></p>
-<p><%= note.like %></p>
 <p><%= link_to 'Delete', note_path(note), method: :delete, data:{confirm:"Are you sure?"} %></p>
-  <% if note.like == false %>
-    <p><%= link_to 'Like', like_path(note) %></p>
-  <% else %>
-    <p><%= link_to 'Unlike', unlike_path(note) %></p>
-  <% end %>
 <% end %>

@@ -37,14 +37,9 @@ class NotesController < ApplicationController
     @notes = Note.all
   end
 
-  def like
-    @note = current_user.notes.find(params[:id])
-    @note.like = true;
-  end
-
-  def unlike
-    @note = current_user.notes.find(params[:id])
-    @note.like = false;
+  def user_notes
+    @notes = current_user.notes.all
+    @note = current_user.notes.new
   end
 
   private
